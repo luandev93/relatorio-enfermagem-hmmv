@@ -1,0 +1,67 @@
+{
+  "entities": {
+    "users": {
+      "title": "users",
+      "description": "Usuários e equipe de enfermagem do Hospital Maria Veneri",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "coren": { "type": "string" },
+        "birthDate": { "type": "string" },
+        "username": { "type": "string" },
+        "pin": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "role", "birthDate", "username", "pin"]
+    },
+    "shift_reports": {
+      "title": "shift_reports",
+      "description": "Relatórios de plantão de enfermagem (12h)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "shift": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorRole": { "type": "string" },
+        "authorCoren": { "type": "string" },
+        "coAuthors": { "type": "array" },
+        "status": { "type": "string" },
+        "recebimentoPlantao": { "type": "string" },
+        "attachments": { "type": "array" },
+        "movement": { "type": "object" },
+        "checklist": { "type": "array" },
+        "feedback": { "type": "object" },
+        "passagemPlantaoSintese": { "type": "string" },
+        "complements": { "type": "array" },
+        "tecnicoPrivateNotes": { "type": "string" },
+        "enfermeiroPrivateNotes": { "type": "string" },
+        "coordinatorConference": { "type": "object" },
+        "viewReceipts": { "type": "array" },
+        "auditLogs": { "type": "array" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "date", "shift", "authorId", "authorName", "authorRole", "status"]
+    },
+    "schedules": {
+      "title": "schedules",
+      "description": "Escalas mensais e diárias de plantão",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "shift": { "type": "string" },
+        "color": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "date", "userId", "userName", "shift", "color"]
+    }
+  }
+}

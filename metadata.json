@@ -1,0 +1,6 @@
+{
+  "name": "Relatório de Enfermagem HMMV",
+  "description": "Sistema de Passagem de Plantão de Enfermagem com gestão de acesso RBAC, validação de coautores, alerta LGPD, mapeamento de leitos, checklist detalhado de equipamentos e feedback operacional.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Permitir acesso às coleções do aplicativo Hospital Maria Veneri
+    match /users/{document=**} {
+      allow read, write: if true;
+    }
+    match /shift_reports/{document=**} {
+      allow read, write: if true;
+    }
+    match /schedules/{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
