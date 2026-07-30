@@ -81,7 +81,7 @@ export default function App() {
   });
 
   const [currentUser, setCurrentUser] = useState<User | null>(() => {
-    const saved = localStorage.getItem(STORAGE_SESSION);
+    const saved = localStorage.getItem(STORAGE_SESSION) || sessionStorage.getItem(STORAGE_SESSION);
     if (saved) {
       try {
         return JSON.parse(saved);
@@ -91,6 +91,10 @@ export default function App() {
     }
     return null;
   });
+
+  // Controla se a sessão atual deve persistir entre fechamentos do
+  // navegador (localStorage) ou apenas durante a aba aberta (sessionStorage)
+  const [rememberSession, setRememberSession] = useState<boolean>(true);
 
   // UI Navigation & Modals
   const [currentView, setCurrentView] = useState<'dashboard' | 'form'>('dashboard');
@@ -178,14 +182,22 @@ export default function App() {
 
   useEffect(() => {
     if (currentUser) {
-      localStorage.setItem(STORAGE_SESSION, JSON.stringify(currentUser));
+      if (rememberSession) {
+        localStorage.setItem(STORAGE_SESSION, JSON.stringify(currentUser));
+        sessionStorage.removeItem(STORAGE_SESSION);
+      } else {
+        sessionStorage.setItem(STORAGE_SESSION, JSON.stringify(currentUser));
+        localStorage.removeItem(STORAGE_SESSION);
+      }
     } else {
       localStorage.removeItem(STORAGE_SESSION);
+      sessionStorage.removeItem(STORAGE_SESSION);
     }
-  }, [currentUser]);
+  }, [currentUser, rememberSession]);
 
   // Auth Handlers
-  const handleLogin = (user: User) => {
+  const handleLogin = (user: User, rememberMe: boolean) => {
+    setRememberSession(rememberMe);
     setCurrentUser(user);
   };
 
