@@ -449,21 +449,23 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-100 flex flex-col font-sans text-slate-800 print:bg-white print:min-h-0 print:h-auto">
-      <div className="flex-1 flex flex-col print:hidden">
-        {/* Top Navigation Header */}
-        <Header
-          currentUser={currentUser}
-          pendingSignaturesCount={pendingSignaturesCount}
-          onOpenPendingModal={() => setShowPendingModal(true)}
-          onOpenUserManagement={() => setShowUserManagement(true)}
-          onOpenChangePassword={() => setShowChangePasswordModal(true)}
-          onOpenFirebaseModal={() => setShowFirebaseModal(true)}
-          onNewReport={() => {
-            setEditingReport(null);
-            setCurrentView('form');
-          }}
-          onLogout={handleLogout}
-        />
+      <div className="flex-1 flex flex-col">
+        {/* Top Navigation Header (oculto na impressão) */}
+        <div className="print:hidden">
+          <Header
+            currentUser={currentUser}
+            pendingSignaturesCount={pendingSignaturesCount}
+            onOpenPendingModal={() => setShowPendingModal(true)}
+            onOpenUserManagement={() => setShowUserManagement(true)}
+            onOpenChangePassword={() => setShowChangePasswordModal(true)}
+            onOpenFirebaseModal={() => setShowFirebaseModal(true)}
+            onNewReport={() => {
+              setEditingReport(null);
+              setCurrentView('form');
+            }}
+            onLogout={handleLogout}
+          />
+        </div>
 
         {/* Main Container */}
         <main className="flex-1 max-w-7xl w-full mx-auto px-4 py-6 sm:px-6">
@@ -567,14 +569,6 @@ export default function App() {
           onReloadFromFirebase={loadDataFromFirebase}
         />
       )}
-
-      {/* Hospital Footer */}
-      <footer className="bg-slate-800 text-slate-400 text-xs text-center py-4 px-4 border-t border-slate-700 print:hidden mt-auto">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-          <span>Hospital Municipal Maria Veneri • Relatório da Equipe de Enfermagem</span>
-          <span>Acesso Seguro (DDMM) & LGPD Compliant</span>
-        </div>
-      </footer>
     </div>
   );
 }
